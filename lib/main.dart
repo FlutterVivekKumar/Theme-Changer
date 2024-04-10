@@ -25,13 +25,17 @@ void main() async {
   ));
 }
 
+/// This method is responsible for fetching and activating remote configurations.
 Future<void> fetchRemoteConfig() async {
   try {
+    // Fetches remote config values from the server and activates them.
     await remoteConfig.fetchAndActivate();
   } catch (e) {
+    // If an error occurs during fetching or activation, log the error.
     log('Error fetching remote config: $e');
   }
 }
+
 
 class MyApp extends StatefulWidget {
   MyApp({super.key});
