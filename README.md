@@ -4,6 +4,6 @@
 ## Screenshots
 
 ![](https://github.com/TechMasterPro/Theme-Changer/blob/main/Screenshot_1712731809.png)
-| Attempt | #1    | #2    |
+| #1 | #2    | #3    |
 | :---:   | :---: | :---: |
-| Seconds | 301   | 283   |
+| ![](https://github.com/TechMasterPro/Theme-Changer/blob/main/Screenshot_1712731809.png) | ![](https://github.com/TechMasterPro/Theme-Changer/blob/main/Screenshot_1712731809.png)   | ![](https://github.com/TechMasterPro/Theme-Changer/blob/main/Screenshot_1712731809.png)   |
