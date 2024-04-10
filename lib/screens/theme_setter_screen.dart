@@ -29,43 +29,53 @@ class _ThemeSetterScreenState extends State<ThemeSetterScreen> {
       body: FutureBuilder<Map<String, dynamic>>(
           future: getDataFromRemoteConfig(),
           builder: (context, snap) {
-            List<ThemeData> themeList = [];
+           // List to store theme data
+List<ThemeData> themeList = [];
 
 // Add default light and dark themes
-            themeList.add(ThemeData.light());
-            themeList.add(ThemeData.dark());
+themeList.add(ThemeData.light());
+themeList.add(ThemeData.dark());
 
-            if (snap.hasData) {
-              final Map<String, dynamic> data = snap.data!['theme'];
-              final Map<String, dynamic> cardData = snap.data!['cardTheme'];
+if (snap.hasData) {
+  // Extract theme data from snapshot
+  final Map<String, dynamic> data = snap.data!['theme'];
+  final Map<String, dynamic> cardData = snap.data!['cardTheme'];
 
+  // Create custom theme
+  ThemeData customTheme = ThemeData(
+    // Set primary color
+    primaryColor: parseColor(data['primaryColor']),
+    // Set accent color
+    accentColor: parseColor(data['accentColor']),
+    // Set background color
+    backgroundColor: parseColor(data['backgroundColor']),
+    // Set app bar color
+    appBarTheme: AppBarTheme(color: parseColor(data['primaryColor'])),
+    // Set icon color
+    iconTheme: IconThemeData(color: data['iconColor'].toString().toColor()),
+    // Set floating action button background color
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: parseColor(data['primaryColor']),
+    ),
+    // Set card theme
+    cardTheme: CardTheme(
+      // Set card color
+      color: parseColor(cardData['color']),
+      // Set card elevation
+      elevation: cardData['elevation'].toDouble(),
+      // Set card shape
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+          cardData['shape']['borderRadius'].toDouble(),
+        ),
+      ),
+    ),
+  );
 
+  // Add custom theme to theme list
+  themeList.add(customTheme);
+}
 
-              // Create custom theme
-              ThemeData customTheme = ThemeData(
-                primaryColor: parseColor(data['primaryColor']),
-                accentColor: parseColor(data['accentColor']),
-                backgroundColor: parseColor(data['backgroundColor']),
-                appBarTheme: AppBarTheme(color: parseColor(data['primaryColor'])),
-                iconTheme: IconThemeData(color: data['iconColor'].toString().toColor()),
-                floatingActionButtonTheme: FloatingActionButtonThemeData(
-                  backgroundColor: parseColor(data['primaryColor']),
-
-                ),
-                cardTheme: CardTheme(
-                  color: parseColor(cardData['color']),
-                  elevation: cardData['elevation'].toDouble(),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                      cardData['shape']['borderRadius'].toDouble(),
-                    ),
-                  ),
-                ),
-              );
-
-
-              themeList.add(customTheme);
-            }
 
 
             return Wrap(
