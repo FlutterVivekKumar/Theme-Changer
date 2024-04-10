@@ -1,5 +1,5 @@
 # remote_config
-
+### This project is used to demostrate how can we implement Remote Config in Flutter App
 
 ## Screenshots
 
